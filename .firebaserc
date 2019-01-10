@@ -1,0 +1,6 @@
+{
+  "projects": {
+    "default": "doterra-list",
+    "doterra-pricelist--add": "doterra-pricelist"
+  }
+}

@@ -1,0 +1,15 @@
+<div class="layout horizontal center-center container flex-center-align">
+  <paper-card alt="Login" heading="Alta producto">
+    <div class="card-content flex-vertical center-center">
+      <paper-input value="{{product.code}}" label="Code"></paper-input>
+      <paper-input value="{{product.productName}}" label="Product Name"></paper-input>
+      <paper-input value="{{product.productQuantity}}" label="Product Quantity"></paper-input>
+      <paper-input value="{{product.clientPrice}}" label="Client Price"></paper-input>
+      <paper-input value="{{product.providerPrice}}" label="Provider Price"></paper-input>
+      <paper-input value="{{product.points}}" label="Points"></paper-input>
+    </div>
+    <div class="card-actions">
+      <paper-button on-click="sendData" raised>Enviar información</paper-button>
+    </div>
+  </paper-card>
+</div>

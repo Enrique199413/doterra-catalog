@@ -1,0 +1,69 @@
+<app-location route="{{route}}" use-hash-as-path></app-location>
+<app-route
+  route="{{route}}"
+  pattern="/:cooperativaRouteSelection"
+  data="{{cooperativaRoute}}"
+  tail="{{cooperativaSelectionTail}}">
+</app-route>
+
+<app-route
+  route="{{route}}"
+  pattern="/login"
+  data="{{pathData}}"
+  tail="{{pathDataTail}}">
+</app-route>
+
+<app-route
+  route="{{route}}"
+  pattern="/account"
+  query-params="{{queryParams}}"
+  tail="{{qpDemoTail}}">
+</app-route>
+<app-drawer-layout fullbleed force-narrow>
+  <app-drawer slot="drawer">
+    drawer-content
+  </app-drawer>
+  <app-header-layout has-scrolling-region>
+    <iron-pages selected={{cooperativaRoute.cooperativaRouteSelection}} attr-for-selected="page-selection">
+      <div page-selection="account">
+        <app-header slot="header" condenses reveals effects="waterfall" shadow fixed>
+          <app-toolbar>
+            <paper-icon-button icon="menu" drawer-toggle></paper-icon-button>
+            <div main-title>Cooperativa la Imposible</div>
+            <paper-menu-button vertical-align="bottom" dynamic-align>
+              <paper-icon-button slot="dropdown-trigger" icon="social:notifications"
+                                 alt="notification"></paper-icon-button>
+              <div slot="dropdown-content">
+                <paper-card class="navbar-style-paper-card">
+                  <div class="card-content">
+                    <div class="container flex flex-center-align flex-equal-justified">
+                      <h2>Notificaciones</h2>
+                      <iron-icon icon="icons:drafts"></iron-icon>
+                    </div>
+                  </div>
+                  <div class="card-actions">
+                    <paper-listbox class="flex-vertical">
+                      <paper-item>Share</paper-item>
+                      <paper-item>Settings</paper-item>
+                      <paper-item>Help</paper-item>
+                    </paper-listbox>
+                  </div>
+                </paper-card>
+              </div>
+            </paper-menu-button>
+            <paper-icon-button icon="icons:assignment"></paper-icon-button>
+            <paper-icon-button icon="icons:account-circle"></paper-icon-button>
+          </app-toolbar>
+        </app-header>
+      </div>
+    </iron-pages>
+
+    <iron-pages selected={{cooperativaRoute.cooperativaRouteSelection}} attr-for-selected="page-selection"
+                class="iron-pages-main-content">
+
+      <cooperativa-account page-selection="account"></cooperativa-account>
+      <cooperativa-login page-selection="login"></cooperativa-login>
+    </iron-pages>
+
+  </app-header-layout>
+</app-drawer-layout>

@@ -1,19 +1,25 @@
-<div class="layout horizontal center-center container flex-center-align custom-margin">
-  <paper-card heading="Mi Cuenta" class="flex margin-justified-paper-card">
-    <div class="card-content flex-start-justified flex-center-align">
-      <div class="width-account-paper-card-photo">
-        <div class="photo" style="background-image: URL({{user.photoURL}})"></div>
-      </div>
-      <div class="flex-vertical width-account-paper-card">
-        <paper-input class="flex" label="Nombre" value="{{user.displayName}}"></paper-input>
-      </div>
-    </div>
-    <div class="card-content">
-      <!--TODO replace with bd data-->
-      <label>Miembro desde {{_getDate(user.metadata.creationTime)}}</label>
-    </div>
-    <div class="card-actions flex-end-justified">
-      <paper-button on-click="closeSession">Cerrar sesión</paper-button>
-    </div>
-  </paper-card>
+<div class="layout horizontal center-center container flex-center-align custom-margin wrap">
+  <vaadin-grid items="{{products}}">
+    <vaadin-grid-column width="50px" flex-grow="0" text-align="end" header="#"></vaadin-grid-column>
+    <vaadin-grid-column path="exists" text-align="end" header="#"></vaadin-grid-column>
+  </vaadin-grid>
+
+  <!--<dom-repeat items="{{products}}" as="product">
+    <template>
+      <paper-card heading="{{getName(product)}}">
+        <div class="card-content">
+          <div class="width-account-paper-card-photo">
+          </div>
+          <div class="flex-vertical width-account-paper-card">
+            <paper-input class="flex" label="Nombre" value="{{user.displayName}}"></paper-input>
+          </div>
+        </div>
+        <div class="card-content">
+
+          {{getProviderPrice(product)}}
+        </div>
+      </paper-card>
+    </template>
+  </dom-repeat>
+  -->
 </div>

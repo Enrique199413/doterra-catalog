@@ -9,6 +9,8 @@ import '@polymer/iron-icons/iron-icons'
 import '@polymer/paper-styles/paper-styles'
 import '@polymer/app-route/app-location'
 import '@polymer/app-route/app-route'
+import {} from '@polymer/polymer/lib/elements/dom-repeat.js'
+import '@vaadin/vaadin-grid/vaadin-grid.js'
 
 import template from './template.html'
 import css from './style.pcss'
@@ -16,13 +18,17 @@ import { FirebaseAuthMixin } from '../../cooperativa-mixins/firebase-auth-mixin'
 
 import ReduxMixin from '../../cooperativa-mixins/redux-mixin'
 import { bindActionCreators } from 'polymer-redux'
+import { FirebaseFirestoreMixin } from '../../cooperativa-mixins/firebase-firestore-mixin'
 
-export default class CooperativaAcount extends ReduxMixin(FirebaseAuthMixin(PolymerElement)) {
+export default class CooperativaAcount extends ReduxMixin(FirebaseFirestoreMixin(PolymerElement)) {
   static get properties () {
     return {
       user: {
         type: Object,
         value: {}
+      },
+      products: {
+        type: Array
       }
     }
   }
@@ -53,6 +59,25 @@ export default class CooperativaAcount extends ReduxMixin(FirebaseAuthMixin(Poly
     return new Date(date)
   }
 
+  getProviderPrice (product) {
+    return product.data().providerPrice
+  }
+
+  getName (product) {
+    return product.data().productName
+  }
+
+  getProducts () {
+    this.collectionActions('get', 'products').then(docRef => {
+      console.log(docRef)
+      this.products = docRef.docs
+      this.notifyPath('products', docRef.docs)
+      this.fillColums()
+    }).catch(error => {
+      console.error('Error adding document: ', error)
+    })
+  }
+
   closeSession () {
     this.destroySession().then(function () {
       // Sign-out successful.
@@ -67,6 +92,19 @@ export default class CooperativaAcount extends ReduxMixin(FirebaseAuthMixin(Poly
 
   constructor () {
     super()
+    this.getProducts()
+  }
+
+  initPage () {
+    console.log('letDoIt')
+  }
+
+  fillColums () {
+    const columns = document.querySelectorAll('vaadin-grid-column')
+    console.log(columns)
+    /*columns[0].renderer = function(root, column, rowData) {
+      root.textContent = rowData.index;
+    };*/
   }
 }
 

@@ -60,9 +60,11 @@
 
     <iron-pages selected={{cooperativaRoute.cooperativaRouteSelection}} attr-for-selected="page-selection"
                 class="iron-pages-main-content">
-
-      <cooperativa-account page-selection="account"></cooperativa-account>
-      <cooperativa-login page-selection="login"></cooperativa-login>
+      {{cooperativaRoute.cooperativaRouteSelection}}
+      <cooperativa-account page-selection="account"
+                           current-page-selection="{{cooperativaRoute.cooperativaRouteSelection}}"></cooperativa-account>
+      <cooperativa-login page-selection="login"
+                         current-page-selection="{{cooperativaRoute.cooperativaRouteSelection}}"></cooperativa-login>
     </iron-pages>
 
   </app-header-layout>

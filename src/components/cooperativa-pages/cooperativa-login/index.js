@@ -23,6 +23,10 @@ export default class CooperativaLogin extends ReduxMixin(FirebaseAuthMixin(Fireb
       product: {
         type: Object,
         value: {}
+      },
+      currentPageSelection: {
+        type: String,
+        notify: true
       }
     }
   }
@@ -79,8 +83,13 @@ export default class CooperativaLogin extends ReduxMixin(FirebaseAuthMixin(Fireb
     })
   }
 
+  seeProducts () {
+    this.currentPageSelection = 'account'
+    this.notifyPath('currentPageSelection', 'account')
+  }
+
   sendData () {
-    /*  let params = {
+    let params = {
       code: this.product.code,
       productName: this.product.productName,
       productQuantity: this.product.productQuantity,
@@ -88,11 +97,9 @@ export default class CooperativaLogin extends ReduxMixin(FirebaseAuthMixin(Fireb
       providerPrice: parseFloat(this.product.providerPrice),
       points: parseFloat(this.product.points)
     }
-*/
-    this.collectionActions('get', 'products').then(docRef => {
-      docRef.forEach((doc) => {
-        console.log(`${doc.id} => ${JSON.stringify(doc.data())}`)
-      })
+
+    this.collectionActions('add', 'products', params).then(docRef => {
+      console.log(docRef)
     }).catch(error => {
       console.error('Error adding document: ', error)
     })

@@ -86,6 +86,7 @@ export default class CooperativaLayout extends ReduxMixin(PolymerElement) {
 
   constructor () {
     super()
+    console.log(this.querySelector('iron-pages'), this.shadowRoot.querySelector('iron-pages'))
   }
 }
 

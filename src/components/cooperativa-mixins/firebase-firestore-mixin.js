@@ -21,7 +21,7 @@ let firebaseFirestoreMixin = (superClass) => class extends FirebaseMixin(superCl
   }
 
   async collectionActions (verb, collection, data) {
-    await this.cooperativaDatabase.collection(collection)[verb](data)
+    return await this.cooperativaDatabase.collection(collection)[verb](data)
   }
 
 }

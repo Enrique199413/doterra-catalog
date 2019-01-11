@@ -5,6 +5,7 @@ require('firebase/firestore')
 
 let firebaseApp = require('firebase/app')
 
+console.log('process.env.projectId', process.env.projectId)
 let initializedApp = firebaseApp.initializeApp({
   apiKey: process.env.apiKey,
   authDomain: process.env.authDomain,

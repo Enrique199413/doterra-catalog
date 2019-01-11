@@ -80,35 +80,22 @@ export default class CooperativaLogin extends ReduxMixin(FirebaseAuthMixin(Fireb
   }
 
   sendData () {
-    /*
-    *
-    * productName: this.product.productName,
-      productQuantity: parseFloat(this.product.productQuantity),
+    /*  let params = {
+      code: this.product.code,
+      productName: this.product.productName,
+      productQuantity: this.product.productQuantity,
       clientPrice: parseFloat(this.product.clientPrice),
       providerPrice: parseFloat(this.product.providerPrice),
       points: parseFloat(this.product.points)
-    * */
-    console.log(this.product)
-    let promesa = this.collectionActions('add', 'products', {
-      code: this.product.code
-    })
-
-    console.log(promesa, '-------------------------------------------------')
-    console.log(promesa, '-------------------------------------------------')
-    console.log(promesa, '-------------------------------------------------')
-    promesa.then(docRef => {
-      console.log('Document written with ID: ', docRef.id)
-    }).catch(error => {
-      console.error('Error adding document: ', error)
-    })
-
-    /*this.collectionActions('get', 'products').then(querySnapshot => {
-      querySnapshot.forEach((doc) => {
+    }
+*/
+    this.collectionActions('get', 'products').then(docRef => {
+      docRef.forEach((doc) => {
         console.log(`${doc.id} => ${JSON.stringify(doc.data())}`)
       })
     }).catch(error => {
       console.error('Error adding document: ', error)
-    })*/
+    })
   }
 
   /*
